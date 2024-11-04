@@ -1,0 +1,41 @@
+type Query {
+    getUserById(id: ID!): User
+    getAllUsers: [User]
+    getUsersByType(typeId: ID!): [User]
+}
+
+type Mutation {
+    createUser(input: UserInput!): User
+    updateUser(id: ID!, input: UserInput!): User
+    deleteUser(id: ID!): Boolean
+    login(email: String!, password: String!): AuthResponse
+}
+
+type User {
+    id: ID!
+    email: String!
+    firstName: String!
+    lastName: String!
+    userType: UserType!
+    createdAt: String!
+    updatedAt: String!
+}
+
+type UserType {
+    id: ID!
+    name: String!
+    description: String
+}
+
+type AuthResponse {
+    token: String!
+    user: User!
+}
+
+input UserInput {
+    email: String!
+    password: String!
+    firstName: String!
+    lastName: String!
+    userTypeId: ID!
+}
